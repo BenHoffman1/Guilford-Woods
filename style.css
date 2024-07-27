@@ -1,0 +1,448 @@
+/* #region Root Variables */
+:root {
+  --red: #981b36;
+  --link-red: #981b36cc;
+  --white: #fefefe;
+  --gray: #3e3c36;
+  --mobile-margin: 32px;
+  --desktop-margin: 67px;
+  --a-hover-height: 0.31em;
+  --a-h3-hover-height: 0.34em;
+  --a-h1-hover-height: 0.38em;
+}
+/* #endregion */
+
+/* #region Global Styles */
+html {
+  font-family: "Libre Franklin", sans-serif;
+  font-size: clamp(13px, 1.6vw, 18px);
+  --margin: clamp(var(--mobile-margin), 3rem, var(--desktop-margin));
+  color: var(--gray);
+}
+
+body {
+  margin: 0;
+}
+/* #endregion */
+
+/* #region Typography */
+h1,
+h2,
+h3,
+p,
+a {
+  margin: 0;
+}
+
+h1,
+h2 {
+  font-family: Oswald, sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.04463rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+h2 {
+  font-size: 2.375rem;
+  line-height: 160%;
+}
+
+h3 {
+  font-family: Oswald, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.0625rem;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+p,
+a {
+  font-style: normal;
+  font-weight: 420;
+  line-height: 1.75rem;
+  letter-spacing: 0.0225rem;
+  color: var(--gray);
+}
+/* #endregion */
+
+/* #region Link Styles */
+a:not(.arrow) {
+  position: relative;
+  text-decoration: none;
+  display: inline-block;
+  z-index: 1;
+}
+
+a:not(.arrow)::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.1875rem;
+  width: 100%;
+  height: 0.0625rem;
+  background-color: var(--link-red);
+  transition: height 0.3s ease;
+  z-index: -1;
+}
+
+a:not(.arrow):hover::before {
+  height: var(--a-hover-height);
+}
+
+a:not(.arrow):has(h3)::before,
+a:not(.arrow):has(h1)::before,
+#visit-button div a:not(.arrow)::before {
+  height: 0;
+}
+
+a:not(.arrow):has(h3):hover::before,
+#visit-button:hover div a:not(.arrow)::before {
+  height: var(--a-h3-hover-height);
+}
+
+a:not(.arrow):has(h1):hover::before {
+  height: var(--a-h1-hover-height);
+}
+/* #endregion */
+
+/* #region Arrow Styling And Animation */
+
+a.arrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+  overflow: hidden;
+
+  color: initial;
+  margin: 0.5rem 1rem;
+  border-radius: 20rem;
+  margin-left: 0px;
+  padding-left: 0.7rem;
+  transition: color 0.2s ease;
+}
+
+a.arrow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 100%;
+  background-color: var(--red);
+  transition: left 0.2s ease;
+  z-index: -1;
+}
+
+a.arrow:hover {
+  color: var(--white);
+}
+
+a.arrow:hover::before {
+  left: 0;
+}
+/* #endregion */
+
+/* #region Header Styles */
+header {
+  display: flex;
+  height: 65vh;
+  padding: 3rem;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.625rem;
+}
+
+#header1 {
+  background: url(images/guilfordwoods.png) lightgray 50% / cover no-repeat;
+}
+
+#top-nav {
+  display: flex;
+  height: 5.9375rem;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  border-radius: 2rem;
+  background: var(--gray);
+  padding-left: 2rem;
+  max-width: 1500px;
+}
+
+#visit-button {
+  display: flex;
+  width: 5.9375rem;
+  height: 5.9375rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 2rem;
+  background: var(--gray);
+}
+
+header div a {
+  color: var(--white);
+}
+
+header div a::after {
+  height: 0rem;
+}
+
+#top-nav-links {
+  display: flex;
+  padding: 0rem 1.42856rem;
+  justify-content: flex-end;
+  align-items: center;
+  gap: -0.5rem;
+  flex: 1 0 0;
+}
+
+.top-nav-anchor {
+  display: flex;
+  width: 7.44rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile-nav {
+  display: none;
+  height: 2rem;
+  width: auto;
+}
+
+/* #endregion */
+
+/* #region Footer Styles */
+footer {
+  display: flex;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background: #f5f6f8;
+  width: 100vw;
+  justify-content: center;
+  gap: var(--margin);
+  padding-bottom: 5rem;
+}
+
+#logo {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  padding: var(--margin);
+  gap: 1rem 3.55556rem;
+  width: fit-content;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+#bottom-row {
+  padding-left: var(--margin);
+  padding-right: var(--margin);
+  display: flex;
+  align-items: center;
+  gap: 0.7rem 4.375rem;
+  align-self: stretch;
+  flex-wrap: wrap;
+  max-width: 70vw;
+}
+
+.library-links:has(.library-links) {
+  gap: 2rem 0px;
+  padding: var(--margin);
+  padding-top: 0px;
+}
+
+.small-text {
+  font-size: 0.8rem;
+}
+
+#middle-row {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.7rem 4.375rem;
+  width: clamp(210px, 32vw, 320px);
+}
+
+#Guilford,
+#College {
+  font-family: "Roboto Slab", serif;
+  font-style: normal;
+  text-transform: uppercase;
+  line-height: normal;
+  font-weight: 280;
+  margin: 0px;
+}
+
+#Guilford {
+  color: var(--red);
+  font-size: 2.8rem;
+}
+
+#College {
+  color: var(--gray);
+  font-size: 1.53rem;
+}
+
+footer .library-links {
+  flex-wrap: wrap;
+  align-items: flex-start;
+  display: flex;
+  gap: 0vw 6vw;
+  flex: 1 0 0;
+  max-width: calc(640px + 40vw);
+}
+
+.footer-component {
+  display: flex;
+  width: clamp(210px, 32vw, 320px);
+  padding: 1rem 0rem;
+  align-items: flex-start;
+  gap: 2rem;
+  border-top: 1px solid var(--gray);
+  border-bottom: 1px solid var(--gray);
+  padding-right: 0.5rem;
+  box-sizing: border-box;
+}
+
+.footer-component:hover {
+  padding-left: 0.5rem;
+  padding-right: 0px;
+  transition: all 0.4s ease;
+}
+
+.footer-component:hover .footer-component-text {
+  color: var(--red);
+}
+
+.footer-component-text {
+  font-size: 0.75rem;
+}
+
+#bottom-row a {
+  display: flex;
+  flex-wrap: nowrap;
+}
+/* #endregion */
+
+
+
+#body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 120px;
+  align-self: stretch;
+}
+
+#ecologies-of-resistance-section {
+  display: flex;
+  padding: var(--margin);
+  
+  gap: 4rem;
+  align-self: stretch;
+  
+}
+
+.text-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3rem;
+  flex: 1 0 0;
+}
+
+.text-arrow-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 48px;
+  align-self: stretch;
+}
+
+.arrow-img {
+  width: 2rem;
+  height: auto;
+}
+
+#lake-img {
+    width: 33%;
+    height: auto;
+}
+
+/* #region Media Queries */
+@media (max-width: 1150px) {
+    #visit-button {
+      display: none;
+    }
+  }
+  
+  @media screen and (max-width: 800px) {
+  
+    #top-nav-links {
+      display: none;
+    }
+  
+    .mobile-nav {
+      display: block;
+    }
+  
+    #top-nav {
+      justify-content: space-between;
+      padding-left: 3vw;
+      padding-right: 3vw;
+    }
+  
+    h1 {
+      font-size: calc(20px + 0.8 * (2rem - 20px));
+    }
+  
+    body {
+      padding: calc(10vw + 0.5 * (10vw - var(--margin)));
+    }
+  
+    header {
+      padding-left: 5vw;
+      padding-right: 5vw;
+    }
+    
+    div #ecologies-of-resistance-section {
+      padding: var(--margin) 0px;
+      justify-content: center;
+      flex-wrap: wrap-reverse;
+    }
+  
+    .text-card {
+      padding-left: var(--margin);
+      padding-right: var(--margin);
+    }
+  
+    #lake-img {
+      height: 30vh;
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+  
+  @media screen and (max-width: 633px) {
+    footer #left-column {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+  
+  @media screen and (max-width: 375px) {
+    .mobile-nav[src*="directions"] {
+      display: none;
+    }
+  }
+  /* #endregion */
