@@ -15,7 +15,7 @@
 /* #region Global Styles */
 html {
   font-family: "Libre Franklin", sans-serif;
-  font-size: clamp(13px, 1.6vw, 18px);
+  font-size: clamp(13px, 1.6vw, 16.5px);
   --margin: clamp(var(--mobile-margin), 3rem, var(--desktop-margin));
   color: var(--gray);
 }
@@ -28,12 +28,18 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: var(--margin);
+  padding: calc(1.5*var(--margin));
 }
 
 #body > div {
   display: flex;
-  padding: var(--margin);
+  padding: 0 calc(1.5*var(--margin));
   gap: 4rem;
+  max-width: 1440px;
+}
+
+footer div {
   max-width: 1440px;
 }
 /* #endregion */
@@ -138,12 +144,12 @@ a.arrow {
   gap: 0.75rem;
   position: relative;
   overflow: hidden;
-  color: initial;
   margin: 0.5rem 1rem;
   border-radius: 20rem;
   margin-left: 0px;
   padding-left: 0.7rem;
   transition: color 0.2s ease;
+  font-weight: 440;
 }
 
 a.arrow::before {
@@ -249,7 +255,7 @@ header div a::after {
 footer {
   display: flex;
   align-items: flex-start;
-  align-content: flex-start;
+  align-content: center;
   flex-direction: column;
   flex-wrap: wrap;
   background: #f5f6f8;
@@ -364,6 +370,7 @@ footer .library-links {
   align-items: flex-start;
   gap: 2rem;
   flex: 1 0 0;
+  max-width: 43.75rem;
 }
 
 .text-arrow-container {
@@ -394,13 +401,13 @@ footer .library-links {
 
 /* #region Media Queries */
 @media (min-width: 1250px) {
-  #body > div {
-    padding: var(--margin) calc(var(--margin) * 2);
+  #body {
+    gap: calc(var(--margin) * 1.75);
   }
   header {
     padding: var(--margin) calc(var(--margin) * 1.5);
   }
-  #logo, .library-links:has(.library-links) {
+  #logo, .library-links:has(.library-links), #bottom-row {
     padding-left: calc(var(--margin) * 1.5);
   }
 }
@@ -426,7 +433,7 @@ footer .library-links {
   h1 {
     font-size: calc(20px + 0.8 * (2rem - 20px));
   }
-  body {
+  #body {
     padding: calc(10vw + 0.5 * (10vw - var(--margin)));
   }
   header {
@@ -438,11 +445,8 @@ footer .library-links {
     justify-content: center;
     flex-wrap: wrap-reverse;
   }
-  .text-card {
-    padding-left: var(--margin);
-    padding-right: var(--margin);
-  }
-  #lake-img {
+
+  #body > div > img {
     height: 30vh;
     width: 100%;
     object-fit: contain;
@@ -471,6 +475,7 @@ footer .library-links {
   flex: 1 0 0;
   gap: 2rem;
   align-self: stretch;
+  background-color: #f8f8f8;
 }
 
 #plant-card-container {
@@ -487,23 +492,133 @@ footer .library-links {
   width: 100%;
 }
 
-/* Updated styles for plant-card */
+
+/* #region Updated styles for plant-card */
 .plant-card {
   position: relative;
   overflow: hidden;
+  padding-bottom: 1.25rem;
+  transition: box-shadow 0.3s ease;
 }
 
-.plant-card h3 {
-  display: inline;
-  background-image: linear-gradient(to right, var(--link-red), var(--link-red));
-  background-size: 0% 0.1em;
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  transition: background-size 0.3s ease;
-  padding-bottom: 0.1em;
+.plant-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--red);
+  transform: scaleX(0);
+  transform-origin: bottom left;
+  transition: transform 0.3s ease;
 }
 
-.plant-card:hover h3 {
-  background-size: 100% 0.1em;
+.plant-card:hover::after {
+  transform: scaleX(1);
 }
+
+.plant-card.clicked::after {
+  transform: scaleX(0);
+  /* transform-origin: bottom right; */
+}
+
 /* #endregion */
+
+#body > div > img {
+  max-width: 50%;
+}
+
+#carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.625rem;
+}
+
+/* Existing styles */
+#carousel-content {
+  display: flex;
+  height: 35.9375rem;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+#carousel-text-content {
+  display: flex;
+  padding: 1.73925rem 5.79756rem 1.73925rem 1rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--Mobile-Margin, 2rem);
+  /* New properties */
+  max-height: 100%; /* Ensure it doesn't exceed the parent's height */
+  overflow-y: auto; /* Add vertical scrollbar when content overflows */
+  box-sizing: border-box; /* Include padding in the element's total height */
+}
+
+/* Optional: Style the scrollbar for webkit browsers */
+#carousel-text-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+#carousel-text-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+#carousel-text-content::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+#carousel-text-content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Ensure the image doesn't stretch */
+#carousel-content img {
+  height: 100%;
+  object-fit: cover; /* This will maintain the aspect ratio */
+  max-width: 50%; /* Adjust this value as needed */
+}
+
+#carousel-nav {
+  display: flex;
+  padding-right: 5rem;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 0.75rem;
+  align-self: stretch;
+}
+
+#carousel-controls {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  gap: 1.85525rem;
+  flex-wrap: wrap;
+}
+
+#carousel-descriptions {
+  display: flex;
+  align-items: flex-start;
+  gap: 5.79756rem;
+  align-self: stretch;
+}
+
+#carousel-descriptions div {
+  display: flex;
+  padding-top: 1.25rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.39144rem;
+  flex: 1 0 0;
+}
+
+.inactive-section, .inactive-section p {
+  color:#3E3C36B2
+}
+
+#plants-section, #history-section {
+  flex-direction: column;
+}

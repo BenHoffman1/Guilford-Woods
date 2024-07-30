@@ -18,3 +18,29 @@ visitButton.addEventListener('mouseenter', () => {
 visitButton.addEventListener('mouseleave', () => {
     arrowImg.src = defaultSrc;
 });
+
+
+// Cards underline
+document.addEventListener('DOMContentLoaded', function() {
+    const plantCards = document.querySelectorAll('.plant-card');
+  
+    plantCards.forEach(card => {
+      let isClicked = false;
+  
+      card.addEventListener('click', function() {
+        this.classList.add('clicked');
+        isClicked = true;
+      });
+  
+      card.addEventListener('mouseleave', function() {
+        this.classList.remove('clicked');
+        isClicked = false;
+      });
+  
+      card.addEventListener('mouseenter', function() {
+        if (!isClicked) {
+          this.classList.remove('clicked');
+        }
+      });
+    });
+  });
