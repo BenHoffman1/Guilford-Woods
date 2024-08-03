@@ -40,7 +40,7 @@ body {
   max-width: 1440px;
 }
 
-#body > div#history-section {
+#body > div.no-padding {
   padding-right: 0px;
   max-width: none;
 }
@@ -604,8 +604,9 @@ table {
   width: 70%;
   height: 100%;
   /* height: fit-content; */
-  object-fit: cover;
-  
+  object-fit: none;
+  object-position: top;
+
 }
 
 #carousel-nav {
@@ -653,6 +654,29 @@ table {
 
   .plant-card img {
     height: 10rem !important;
+  }
+  
+  /* Carousel */
+  #carousel-content {
+    flex-direction: column-reverse;
+    height: auto;
+  }
+
+  #carousel-content > * {
+    width: 100%;
+  }
+
+  #carousel-descriptions, #carousel-progress {
+    display: none !important;
+  }
+
+  #carousel-content img {
+    width: 100% !important;
+  }
+
+  #carousel-text-content {
+    overflow-y: visible;
+    height: auto;
   }
 }
 
@@ -779,17 +803,18 @@ h3.light {
   }
   
   #body > div {
-    padding: var(--margin) 0px;
+    /* padding: var(--margin) 0px; */
     justify-content: center;
     flex-wrap: wrap-reverse;
-    padding: 0px calc(var(--margin));
+    padding: 0px calc(.5 * var(--margin));
     gap: 2rem;
   }
 }
 /* iPad Breakpoint */
 @media screen and (max-width: 800px) {
   #carousel-content img {
-    width: 66%;
+    /* width: 66%; */
+    height: 30rem !important;
   }
 
   #body div#visit-section{
@@ -828,7 +853,7 @@ h3.light {
     max-width: 100%;
   }
 
-  #body > div#history-section {
+  #body > div.no-padding {
     padding-left: 2rem;
   }
 }
@@ -871,4 +896,16 @@ h3.light {
 
 #carousel-descriptions > div.active-section {
   opacity: 1;
+}
+
+#education-section > div > div {
+  /* display: flex; */
+  flex-direction: column;
+  gap: .5rem
+}
+
+#education-section > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
 }
