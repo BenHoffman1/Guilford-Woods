@@ -40,11 +40,25 @@ body {
   max-width: 1440px;
 }
 
-#body > div.no-padding {
+#body > div.no-padding-right {
   padding-right: 0px;
   max-width: none;
 }
 
+#body > div.no-padding-left {
+  max-width: none;
+  padding: 0px;
+  /* padding-left: 2rem; */
+  width: 100%;
+  /* justify-content: center; */
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+}
+
+#body > div.no-padding-left img {
+  width: 50%;
+}
 
 
 #carousel-descriptions {
@@ -115,6 +129,10 @@ p.light {
   font-style: normal;
   /* font-weight: 500; */
   line-height: 1.5rem;
+}
+
+h3.light {
+  margin: 0px;
 }
 /* #endregion */
 
@@ -217,20 +235,25 @@ header {
   background: url(images/guilfordwoods.png) lightgray 50% / cover no-repeat;
 }
 
-#top-nav {
-  display: flex;
+#top-nav, #top-nav > div {
   height: 5.9375rem;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
   border-radius: 2rem;
   background: var(--gray);
-  padding-left: 2rem;
+  
   max-width: 1343.12px;
   
 }
 
-#visit-button {
+@media screen and (min-width: 800px) {
+  #top-nav, #top-nav > div {
+    display: flex;
+    padding-left: 2rem;
+  }  
+}
+  #visit-button {
   display: flex;
   width: 5.9375rem;
   height: 5.9375rem;
@@ -271,6 +294,7 @@ header div a::after {
   height: 2rem;
   width: auto;
 }
+
 /* #endregion */
 
 /* #region Footer Styles */
@@ -403,7 +427,7 @@ footer .library-links {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 2vw;
+  gap: 2rem;
   align-self: stretch;
 }
 
@@ -425,52 +449,30 @@ footer .library-links {
 }
 /* #endregion */
 
-
-
+/* #region Plant Card styles */
+/* Plant Card Container */
 #plant-card-container {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   width: 100%;
   margin: 0 auto;
-  /* padding: 2rem 0; */
   border-collapse: separate;
 }
 
+/* General Plant Card Styles */
 .plant-card {
   display: flex;
   align-items: flex-start;
   gap: 2.5rem;
-  padding: 1rem;
-  position: relative;
-  overflow: hidden;
-  background-color: var(--light-gray);
   padding: 3.2rem 3rem;
   margin-bottom: 2rem;
+  background-color: var(--light-gray);
+  position: relative;
+  overflow: hidden;
 }
 
-.plant-card img {
-  width: 10rem; /* Adjust as needed */
-  height: 10rem; /* Adjust as needed */
-  object-fit: cover;
-}
-
-.plant-card-content {
-  flex: 1;
-}
-
-.plant-card h3 {
-  margin: 0 0 1.5rem 0;
-}
-
-.plant-card p {
-  margin: 0;
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-/* New */
-
-
+/* Plant Card Image Styles */
 .plant-card img {
   width: 10rem;
   height: 10rem;
@@ -482,8 +484,12 @@ footer .library-links {
   height: 18rem;
 }
 
+/* Plant Card Content Styles */
 .plant-card-content {
   flex: 1;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 .plant-card h3 {
@@ -496,31 +502,7 @@ footer .library-links {
   line-height: 1.4;
 }
 
-table {
-  border-spacing: 2rem;
-}
-
-#urr-card {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
-  align-items: flex-start;
-  /* gap: 2.52094rem; */
-  box-sizing: border-box;
-  flex: 1; /* Allow the card to grow and fill available space */
-  /* display: table-cell; */
-}
-
-/* Ensure text doesn't overflow */
-.plant-card-content {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  hyphens: auto;
-}
-
-/* #region Updated styles for plant-card */
-
+/* Hover Effect */
 .plant-card::after {
   content: "";
   position: absolute;
@@ -540,107 +522,26 @@ table {
 
 .plant-card.clicked::after {
   transform: scaleX(0);
-  /* transform-origin: bottom right; */
 }
 
-/* #endregion */
-
-
-
-#carousel {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  /* gap: 0.625rem; */
-  /* gap: 1rem; */
-  
+/* Table Styles */
+table {
+  border-spacing: 2rem;
 }
 
-/* Existing styles */
-#carousel-content {
+/* Underground Railroad Card Specific Styles */
+#urr-card {
   display: flex;
-  height: 35.9375rem;
-  align-items: flex-start;
-  justify-content: flex-end;
-  align-self: stretch;
   width: 100%;
-}
-
-#carousel-text-content {
-  display: flex;
-  padding: 1.5rem 3rem 1.5rem 0rem;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--Mobile-Margin, 2rem);
-
-  max-height: 100%; 
-  overflow-y: auto; 
-  box-sizing: border-box; 
-  width: 33%;
-}
-
-/* #region: Style the scrollbar for webkit browsers */
-#carousel-text-content::-webkit-scrollbar {
-  width: 8px;
-}
-
-#carousel-text-content::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-#carousel-text-content::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
-}
-
-#carousel-text-content::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-/* #endregion */
-
-#carousel-content img {
-  /* height: 100%;
-  max-width: 66%; */
-  width: 70%;
   height: 100%;
-  /* height: fit-content; */
-  object-fit: none;
-  object-position: top;
-
-}
-
-#carousel-nav {
-  display: flex;
-  padding-right: 5rem;
   flex-direction: column;
-  justify-content: center;
   align-items: flex-start;
-  gap: 0.75rem;
-  align-self: stretch;
-  padding-top: 1rem;
+  box-sizing: border-box;
+  flex: 1;
 }
 
-.inactive-section,
-.inactive-section p {
-  color: #3e3c36b2;
-}
-
-#plants-section,
-#history-section {
-  flex-direction: column;
-}
-
-/* /////////////////////////////////////////////////////////////// */
-
-
-
-
-/* Plant Cards Mobile layouts (1 column) */
+/* Mobile Styles */
 @media (max-width: 600px) {
-  /* #plant-card-container, #plant-card-container tr, #plant-card-container td {
-    display: block;
-  } */
-
   .plant-card {
     flex-direction: column;
   }
@@ -655,31 +556,9 @@ table {
   .plant-card img {
     height: 10rem !important;
   }
-  
-  /* Carousel */
-  #carousel-content {
-    flex-direction: column-reverse;
-    height: auto;
-  }
-
-  #carousel-content > * {
-    width: 100%;
-  }
-
-  #carousel-descriptions, #carousel-progress {
-    display: none !important;
-  }
-
-  #carousel-content img {
-    width: 100% !important;
-  }
-
-  #carousel-text-content {
-    overflow-y: visible;
-    height: auto;
-  }
 }
 
+/* Table Styles  */
 @media (max-width: 1300px) {
   td:has(#urr-card) {
     width: 100%;
@@ -704,83 +583,359 @@ tbody {
 td {
   vertical-align: top;
 }
+/* #endregion */
 
-h3.light {
-  margin: 0px;
-}
+/* #region History Section styles */
 
-#carousel-content {
-  max-width: 1600px;
-}
+  /* #region Main Carousel Container */
+  #carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 1600px;
+  }
+  /* #endregion */
 
-#carousel {
-  align-items: flex-start;
-  flex-wrap: wrap;
+  /* #region Carousel Content */
+  #carousel-content {
+    display: flex;
+    height: 35.9375rem;
+    align-items: flex-start;
+    justify-content: flex-end;
+    align-self: stretch;
+    width: 100%;
+    max-width: 1600px;
+  }
+
+  #carousel-content img {
+    width: 70%;
+    height: 100%;
+    object-fit: none;
+    object-position: top;
+  }
+  /* #endregion */
+
+  /* #region Carousel Text Content */
+  #carousel-text-content {
+    display: flex;
+    padding: 1.5rem 3rem 1.5rem 0rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--Mobile-Margin, 2rem);
+    max-height: 100%; 
+    overflow-y: auto; 
+    box-sizing: border-box; 
+    width: 33%;
+  }
+  /* #endregion */
+
+  /* #region Carousel Navigation */
+  #carousel-nav {
+    display: flex;
+    padding-right: 5rem;
+    padding-top: 1rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.75rem;
+    align-self: stretch;
+  }
+  /* #endregion */
+
+  /* #region Carousel Controls */
+  #carousel-controls {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  #carousel-controls > :last-child {
+    margin-left: auto;
+  }
+
+  #carousel-controls div {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    gap: .7rem;
+    flex-wrap: wrap;
+  }
+  /* #endregion */
+
+  /* #region Navigation Buttons */
+  .btn {
+    display: flex;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.55188rem;
+    flex-shrink: 0;
+  }
+
+  .btn img {
+    width: 0.88306rem;
+    height: 0.4415rem;
+    flex-shrink: 0;
+    transform: scale(2);
+  }
+
+  .btn#left {
+    transform: rotate(180deg);
+  }
+  /* #endregion */
+
+  /* #region Carousel Descriptions */
+  #carousel-descriptions {
+    display: flex;
+    align-items: flex-start;
+    gap: 5.79756rem;
+    align-self: stretch;
+  }
+
+  #carousel-descriptions div {
+    display: flex;
+    padding-top: 1.25rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.39144rem;
+    flex: 1 0 0;
+  }
+  /* #endregion */
+
+  /* #region Inactive Sections */
+  .inactive-section,
+  .inactive-section p {
+    color: #3e3c36;
+  }
+  /* #endregion */
+
+  /* #region Layout Adjustments */
+  #plants-section,
+  #history-section {
+    flex-direction: column;
+  }
+  /* #endregion */
+
+  /* #region: Style the scrollbar for webkit browsers */
+  #carousel-text-content::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  #carousel-text-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  #carousel-text-content::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+
+  #carousel-text-content::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  /* #endregion */
+
+  /* #region: Other carousel styles */
+  #carousel-nav {
+  position: relative;
+  }
+
+  #carousel-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background-color: var(--gray);
+  transition: width 0.3s ease;
+  }
+
+  #carousel-descriptions > div {
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  opacity: .5;
+  }
+
+  #carousel-descriptions > div.active-section {
+  opacity: 1;
+
+  }
+
+  #carousel-descriptions > div.active-section::after {
+  content: "";
+  /* position: absolute; */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--red);
+  /* transform: scaleX(0); */
+  transform-origin: bottom left;
+  transition: transform 0.3s ease;
+  }
+  /* #endregion */
+
+  @media (max-width: 800px) {
+    #carousel-descriptions > div > p {
+      display: none;
+    }
+  }
+
+  @media (max-width: 600px) {
+    #carousel-content {
+      flex-direction: column-reverse;
+      height: auto;
+    }
+
+    #carousel-content > * {
+      width: 100%;
+    }
+
+    #carousel-descriptions, 
+    #carousel-progress {
+      display: none !important;
+    }
+
+    #carousel-content img {
+      width: 100% !important;
+    }
+
+    #carousel-text-content {
+      overflow-y: visible;
+      height: auto;
+    }
+  }
+/* #endregion */
+
+/* #region Education Section styles */
+#education-section > div > div {
+  /* display: flex; */
   flex-direction: column;
+  gap: .5rem
 }
 
-.btn {
+#education-section > div {
   display: flex;
-  width: 1.5rem;
-  height: 1.5rem;
-  padding: 0.5rem;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 0.55188rem;
-  flex-shrink: 0;
-}
-
-.btn img {
-  width: 0.88306rem;
-  height: 0.4415rem;
-  flex-shrink: 0;
-  transform: scale(2);
-}
-
-.btn#left {
-  transform: rotate(180deg);
-}
-
-#carousel-controls {
-  
-  display: flex;
-  align-items: center;
-  align-content: center;
-  gap: 4rem;
-  flex-wrap: wrap;
+  gap: 5rem;
 }
 
 #carousel-descriptions {
-  display: flex;
-  align-items: flex-start;
-  gap: 5.79756rem;
-  align-self: stretch;
+  height: 13rem;
+}
+/* #endregion */
+
+
+
+
+.hamburger {
+
 }
 
-#carousel-descriptions div {
-  display: flex;
-  padding-top: 1.25rem;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.39144rem;
-  flex: 1 0 0;
+.hamburger.closed {
+
 }
 
-#carousel-controls div {
-
-  display: flex;
-  align-items: center;
-  align-content: center;
-  gap: .7rem;
-  flex-wrap: wrap;
+.mobile-nav.opened {
+  display: none;
 }
 
-@media (max-width: 800px) {
-  #carousel-descriptions > div > p {
-    display: none;
+div#top-nav-not-links {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  padding-left: .5rem;
+  width: 100%;
+}
+
+#links-quote-container p {
+  display: none;
+}
+
+
+@media screen and (max-width: 800px) {
+  #top-nav {
+    padding: 0px;
+    background: var(--gray);
+    height: fit-content;
+  }
+  #top-nav-links {
+    /* display: none; */
+    display: flex;
+    padding: 1rem 0rem;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 0.5rem;
+    align-self: stretch;
+    flex-wrap: wrap;
+    width: 100%;
+    border-radius: 0px;
+  }
+
+  .top-nav-anchor {
+    display: flex;
+    padding: 0.5rem 0.625rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.625rem;
+    align-items: center;
+  }
+
+  .top-nav-anchor:not(.current) {
+    
+  }
+
+  .mobile-nav {
+    display: block;
+  }
+
+  #top-nav {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  #top-nav img, h1 {
+    padding: 3vw;
+  }
+
+  h1 {
+    font-size: calc(20px + 0.8 * (2rem - 20px));
+  }
+
+  #top-nav > #links-quote-container {
+    display: flex;
+    padding: 0rem 1rem 1.875rem 1rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1.5rem;
+    align-self: stretch;
+    height: fit-content;
   }
   
+  #links-quote-container p {
+    color: #FEFEFE;
+  
+    /* 🌲M | P Light */
+    font-family: "Libre Franklin";
+    /* font-size: 0.75rem; */
+    font-style: normal;
+    font-weight: 300;
+    line-height: 0.96875rem;
+    letter-spacing: -0.0075rem;
+    text-decoration-line: underline;
+    display: flex;
+    width: 80%;
+    justify-content: center;
+  }
 }
 /* #region Media Queries */
 @media (min-width: 1250px) {
@@ -821,26 +976,14 @@ h3.light {
     flex-direction: column-reverse;
   }
 
-  #top-nav-links {
-    display: none;
-  }
-  .mobile-nav {
-    display: block;
-  }
-  #top-nav {
-    justify-content: space-between;
-    padding-left: 3vw;
-    padding-right: 3vw;
-  }
-  h1 {
-    font-size: calc(20px + 0.8 * (2rem - 20px));
-  }
   #body {
     padding: calc(10vw + 0.5 * (10vw - var(--margin))) 0px;
   }
+
   #welcome-section, #visit-section, #plant-section {
     margin: 0px calc(var(--margin));
   }
+
   header {
     padding-left: 5vw;
     padding-right: 5vw;
@@ -853,8 +996,12 @@ h3.light {
     max-width: 100%;
   }
 
-  #body > div.no-padding {
+  #body > div.no-padding-right {
     padding-left: 2rem;
+  }
+
+  #body > div.no-padding-left {
+    padding-right: 2rem;
   }
 }
 
@@ -872,40 +1019,3 @@ h3.light {
 }
 /* #endregion */
 
-#carousel-nav {
-  position: relative;
-}
-
-#carousel-progress {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 2px;
-  background-color: var(--gray);
-  transition: width 0.3s ease;
-}
-
-#carousel-descriptions > div {
-  cursor: pointer;
-  transition: opacity 0.3s ease;
-}
-
-#carousel-descriptions > div.inactive-section {
-  opacity: 0.5;
-}
-
-#carousel-descriptions > div.active-section {
-  opacity: 1;
-}
-
-#education-section > div > div {
-  /* display: flex; */
-  flex-direction: column;
-  gap: .5rem
-}
-
-#education-section > div {
-  display: flex;
-  flex-direction: column;
-  gap: 5rem;
-}

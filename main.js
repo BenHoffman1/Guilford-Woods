@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+// #region Carousel //
 
 // Carousel data
 const carouselData = [
@@ -142,5 +143,55 @@ function initCarousel() {
   updateCarousel();
 }
 
+
 // Wait for the DOM to be fully loaded before initializing
 document.addEventListener('DOMContentLoaded', initCarousel);
+
+//#endregion
+
+// #region Hamburger Menu //
+
+const hamburger = document.querySelector(".closed");
+const menu = document.querySelectorAll("#links-quote-container");
+const openMenuSrc = "images/menu-toggle-closed.svg"; 
+const defaultMenuSrc = "images/menu-toggle.svg"; 
+let menuOpen = true;
+function toggleMenu() {
+  menuOpen = !menuOpen;
+
+  menu.forEach(element => {
+    element.style.display = menuOpen ? "none" : "flex";
+  });
+  
+  menu.forEach(element => {
+    element.classList.toggle("open", menuOpen);
+  });
+
+  hamburger.src = menuOpen ? openMenuSrc : defaultMenuSrc;
+}
+
+function handleScreenSize(mediaQuery) {
+  if (mediaQuery.matches) {
+    // Screen width is 800px or less
+    hamburger.addEventListener("click", toggleMenu);
+    menu.forEach(element => {
+      element.style.display = "none";
+    });
+  } else {
+    // Screen width is more than 800px
+    hamburger.removeEventListener("click", toggleMenu);
+    menu.forEach(element => {
+      element.style.display = "flex";
+    });
+  }
+}
+
+// Create a media query
+const mediaQuery = window.matchMedia("(max-width: 800px)");
+
+// Initial check
+handleScreenSize(mediaQuery);
+
+// Add listener for window resize
+mediaQuery.addListener(handleScreenSize);
+//#endregion
