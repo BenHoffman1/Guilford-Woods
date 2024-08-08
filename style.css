@@ -10,6 +10,7 @@
   --a-hover-height: 0.31em;
   --a-h3-hover-height: 0.34em;
   --a-h1-hover-height: 0.38em;
+  overflow-x: hidden;
 }
 /* #endregion */
 
@@ -29,7 +30,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--margin);
+  gap: calc(3 * var(--margin));
   padding: calc(3 * var(--margin)) 0px;
 }
 
@@ -233,6 +234,14 @@ header {
 
 #header1 {
   background: url(images/guilfordwoods.png) lightgray 50% / cover no-repeat;
+}
+
+#header2 {
+  background: url(images/lake.png) lightgray 50% / cover no-repeat;
+}
+
+#header3 {
+  background: url(images/woods-road-sign.png) lightgray 50% / cover no-repeat;
 }
 
 #top-nav, #top-nav > div {
@@ -466,10 +475,16 @@ footer .library-links {
   align-items: flex-start;
   gap: 2.5rem;
   padding: 3.2rem 3rem;
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
   background-color: var(--light-gray);
   position: relative;
   overflow: hidden;
+}
+
+.other-plants-cell {
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
 }
 
 /* Plant Card Image Styles */
@@ -524,10 +539,10 @@ footer .library-links {
   transform: scaleX(0);
 }
 
-/* Table Styles */
+/* Table Styles
 table {
   border-spacing: 2rem;
-}
+} */
 
 /* Underground Railroad Card Specific Styles */
 #urr-card {
@@ -570,6 +585,10 @@ table {
   table td {
     display: block;
     width: 100%;
+  }
+
+  #urr-card {
+    margin-bottom: 2rem;
   }
 
 }
@@ -830,8 +849,7 @@ td {
 }
 /* #endregion */
 
-
-
+/* #region Mobile Nav styles */
 
 .hamburger {
 
@@ -856,6 +874,33 @@ div#top-nav-not-links {
 #links-quote-container p {
   display: none;
 }
+
+#body > #urr-tree-section {
+  flex-direction: row-reverse;
+  /* padding: 0px; */
+}
+
+.other-plants-cell#single-td {
+  flex-direction: row;
+}
+
+/* #endregion */
+
+/* #region History Page styles */
+
+#history-container td {
+  height: 50rem;
+  width: 46%;
+}
+#history-container {
+  border-spacing: 9rem;
+}
+
+#history-container p {
+  margin-top: 2rem;
+}
+
+/* #endregion */
 
 
 @media screen and (max-width: 800px) {
@@ -929,12 +974,13 @@ div#top-nav-not-links {
     /* font-size: 0.75rem; */
     font-style: normal;
     font-weight: 300;
-    line-height: 0.96875rem;
+    line-height: 1.5rem;
     letter-spacing: -0.0075rem;
     text-decoration-line: underline;
     display: flex;
     width: 80%;
     justify-content: center;
+    text-align: center;
   }
 }
 /* #region Media Queries */
@@ -958,10 +1004,9 @@ div#top-nav-not-links {
   }
   
   #body > div {
-    /* padding: var(--margin) 0px; */
     justify-content: center;
     flex-wrap: wrap-reverse;
-    padding: 0px calc(.5 * var(--margin));
+    padding: 0px calc(var(--margin));
     gap: 2rem;
   }
 }
@@ -972,7 +1017,7 @@ div#top-nav-not-links {
     height: 30rem !important;
   }
 
-  #body div#visit-section{
+  #body div#visit-section {
     flex-direction: column-reverse;
   }
 
@@ -980,7 +1025,7 @@ div#top-nav-not-links {
     padding: calc(10vw + 0.5 * (10vw - var(--margin))) 0px;
   }
 
-  #welcome-section, #visit-section, #plant-section {
+  #welcome-section, #visit-section, #plant-section, #body div#urr-tree-section, #urr-tree-section {
     margin: 0px calc(var(--margin));
   }
 
@@ -1002,6 +1047,19 @@ div#top-nav-not-links {
 
   #body > div.no-padding-left {
     padding-right: 2rem;
+    padding-left: 1rem;
+    max-width: 83vw;
+    flex-direction: column-reverse;
+    align-content: flex-end;
+  }
+
+  #body > div.no-padding-left > * {
+    width: 100%;
+  }
+
+  #body > div.no-padding-left > img {
+    width: 100%;
+    object-fit: fill;
   }
 }
 
@@ -1010,11 +1068,21 @@ div#top-nav-not-links {
     width: 100%;
     box-sizing: border-box;
   }
+
+  div#plants-section {
+    padding: 0px !important;
+  }
 }
 
 @media screen and (max-width: 375px) {
   .mobile-nav[src*="directions"] {
     display: none;
+  }
+}
+@media (min-width: 1300px) {
+  table {
+      border-collapse: separate; /* Ensure border-spacing works */
+      border-spacing: 2rem 0; /* 2rem horizontal, 0 vertical */
   }
 }
 /* #endregion */
