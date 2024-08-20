@@ -19,6 +19,13 @@ visitButton.addEventListener('mouseleave', () => {
   arrowImg.src = defaultSrc;
 });
 
+visitButton.addEventListener('click', () => {
+  const URL = 'index.html#visit-section';  
+  window.location.href = URL;
+});
+
+
+
 // Cards underline
 document.addEventListener('DOMContentLoaded', function () {
   const plantCards = document.querySelectorAll('.plant-card');
@@ -363,3 +370,34 @@ if (order === 1 && section !== activeSection) {
 }
 }
 
+// Back to top button
+let back_to_top_btn = document.getElementById("back-to-top");
+
+back_to_top_btn.onclick = function() {topFunction()};
+
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+
+const footerComponents = document.getElementsByClassName('footer-component');
+const lastFooterComponent = footerComponents[footerComponents.length - 1];
+
+supportComponent.innerHTML= "";
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('DOM fully loaded and parsed');
+  const ebCard = document.getElementById('ethnobotany-card');
+  
+  if (ebCard) {
+    console.log('Ethnobotany card found:', ebCard);
+    ebCard.addEventListener('click', function() {
+      console.log('Ethnobotany card clicked');
+      window.location.href = 'explore.html#eb-section';
+    });
+  } else {
+    console.log('Ethnobotany card not found');
+  }
+});
