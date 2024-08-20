@@ -200,15 +200,12 @@ function initCarousel() {
     updateCarousel();
   });
 
-  // Populate carousel descriptions
   populateCarouselDescriptions();
 
-  // Initialize carousel
   updateCarousel();
 }
 
 
-// Wait for the DOM to be fully loaded before initializing
 document.addEventListener('DOMContentLoaded', initCarousel);
 
 //#endregion
@@ -260,7 +257,6 @@ handleScreenSize(mediaQuery);
 mediaQuery.addListener(handleScreenSize);
 //#endregion
 
-// #region For Testing 
 
 let isOutlined = false;
 
@@ -315,7 +311,7 @@ document.addEventListener('keydown', function(event) {
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initial order assignment
-  assignOrders();
+  
 
   // Add click event listeners to all sections
   const sections = document.querySelectorAll('section');
@@ -327,48 +323,10 @@ document.addEventListener('DOMContentLoaded', () => {
       // Add active class to clicked section
       e.currentTarget.classList.add('active-section');
       
-      // Reassign orders
-      assignOrders();
     });
   });
 });
 
-function assignOrders() {
-  const container = document.querySelector('.section-container');
-  const activeSection = container.querySelector('.active-section');
-  if (!activeSection) return;
-
-  // Remove the order-1 class from all sections
-  container.querySelectorAll('section').forEach(section => {
-    section.classList.remove('order-1');
-  });
-
-  let order = 1;
-  activeSection.style.order = order;
-  activeSection.classList.add('order-1');  // Add class to active section
-
-  // Assign orders to previous siblings
-  let prevSibling = activeSection.previousElementSibling;
-  while (prevSibling) {
-    prevSibling.style.order = --order;
-    prevSibling = prevSibling.previousElementSibling;
-  }
-
-  // Reset order for next siblings
-  order = 1;
-  let nextSibling = activeSection.nextElementSibling;
-  while (nextSibling) {
-    nextSibling.style.order = ++order;
-    nextSibling = nextSibling.nextElementSibling;
-  }
-
-  // In the assignOrders function:
-if (order === 1 && section !== activeSection) {
-  section.classList.add('order-1-hidden');
-} else {
-  section.classList.remove('order-1-hidden');
-}
-}
 
 // Back to top button
 let back_to_top_btn = document.getElementById("back-to-top");
