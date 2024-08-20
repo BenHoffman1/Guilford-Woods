@@ -1,5 +1,5 @@
 // Last Updated 
-const lastUpdated = "2024-07-17"; // YYYY-MM-DD format
+const lastUpdated = "2024-20-08"; // YYYY-MM-DD format
 
 document.addEventListener('DOMContentLoaded', (event) => {
   document.getElementById('lastUpdated').textContent = lastUpdated;
@@ -258,54 +258,6 @@ mediaQuery.addListener(handleScreenSize);
 //#endregion
 
 
-let isOutlined = false;
-
-// Function to convert OKLab to RGB
-function oklabToRgb(okl, oka, okb) {
-    // Convert OKLab to linear sRGB
-    const l = okl + 0.3963377774 * oka + 0.2158037573 * okb;
-    const m = okl - 0.1055613458 * oka - 0.0638541728 * okb;
-    const s = okl - 0.0894841775 * oka - 1.2914855480 * okb;
-
-    const l_ = l ** 3;
-    const m_ = m ** 3;
-    const s_ = s ** 3;
-
-    const r = 4.0767416621 * l_ - 3.3077115913 * m_ + 0.2309699292 * s_;
-    const g = -1.2684380046 * l_ + 2.6097574011 * m_ - 0.3413193965 * s_;
-    const b = -0.0041960863 * l_ - 0.7034186147 * m_ + 1.7076147010 * s_;
-
-    // Convert linear sRGB to sRGB
-    const toSrgb = (c) => (c <= 0.0031308 ? 12.92 * c : 1.055 * c ** (1 / 2.4) - 0.055);
-
-    return `rgb(${Math.round(toSrgb(r) * 255)}, ${Math.round(toSrgb(g) * 255)}, ${Math.round(toSrgb(b) * 255)})`;
-}
-
-// Function to generate a rainbow color for a given depth
-function getRainbowColor(depth) {
-    const hues = [0, 30, 60, 120, 240, 275, 300]; // Approximate hues for red, orange, yellow, green, blue, indigo, violet
-    const hue = hues[depth % hues.length];
-    const l = 0.8; // Lightness
-    const a = Math.cos((hue * Math.PI) / 180) * 0.3;
-    const b = Math.sin((hue * Math.PI) / 180) * 0.3;
-    return oklabToRgb(l, a, b);
-}
-
-// Function to apply outline color based on hierarchy depth
-function applyOutline(element, depth = 0) {
-    element.style.outline = isOutlined ? `2px solid ${getRainbowColor(depth)}` : 'none';
-    Array.from(element.children).forEach(child => applyOutline(child, depth + 1));
-}
-
-document.addEventListener('keydown', function(event) {
-    
-    // Toggle the outline state
-    isOutlined = !isOutlined;
-
-    // Select all elements and toggle the outline style
-    applyOutline(document.body);
-
-});
 
 // #endregion
 
