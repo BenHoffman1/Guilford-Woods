@@ -243,6 +243,10 @@ header {
   background: url(images/woods-road-sign.png) lightgray 50% / cover no-repeat;
 }
 
+#header4 {
+  background: url(images/person-at-lake.png) lightgray 50% / cover no-repeat;
+}
+
 #top-nav,
 #top-nav > div {
   height: 5.9375rem;
@@ -671,6 +675,7 @@ td {
   align-items: flex-start;
   gap: 0.75rem;
   align-self: stretch;
+  /* max-width: 60vw; */
 }
 /* #endregion */
 
@@ -726,7 +731,7 @@ td {
 #carousel-descriptions {
   display: flex;
   align-items: flex-start;
-  gap: 5.79756rem;
+  gap: 6rem;
   align-self: stretch;
 }
 
@@ -832,12 +837,12 @@ td {
 
 
 #history-section * {
-  max-width: calc(100vw - 2rem);
+  /* max-width: min(25rem, calc(100vw - 2rem), 1280px); */
   box-sizing: border-box;
 }
 
 #carousel-descriptions div {
-  min-width: 30%;
+  min-width: 27%;
 }
 /* #endregion */
 
@@ -963,7 +968,6 @@ div#top-nav-not-links {
   white-space: wrap;
 }
 
-/* New Styles */
 .history-container {
   max-width: 90vw;
   margin: 0 auto;
@@ -1019,13 +1023,9 @@ div#top-nav-not-links {
   margin-top: auto;
 }
 
-div#as-legal {
-  /* margin-top: 8rem; */
+.history-container {
+  margin-bottom: 5rem;
 }
-
-/* img#levi {
-  margin-top: 1rem; 
-} */
 
 @media (min-width: 1201px) {
   .history-container.mobile {
@@ -1066,8 +1066,51 @@ div#as-legal {
     padding: 1rem;
   }
 }
+
+
 /* #endregion */
 
+
+/* #region FAQ Page styles */
+
+.faq-page-body {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+
+.faq-page-body > .links-quotes-container {
+  width: 200px;
+}
+
+
+#faq-body {
+  display: flex;
+  flex-direction: column;
+  width: 58vw;
+}
+
+#faq-container {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 2.75rem 3rem 3.125rem;
+  align-items: flex-start;
+  gap: var(--margin, 2rem);
+  align-self: stretch;
+}
+
+#faq-container#top {
+  display: flex;
+  flex-direction: row;
+  align-self: stretch;
+}
+
+#faq-container#bottom {
+  align-self: stretch;
+}
+
+/* #endregion */
 @media screen and (max-width: 800px) {
   #top-nav {
     padding: 0px;
